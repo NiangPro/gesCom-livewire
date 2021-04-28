@@ -6,6 +6,8 @@
 
     @if ($etat === 'add')
         @include('ajouts.addDevis')
+    @elseif ($etat === 'info')
+        @include('infos.infoDevis')
     @else
         <button class="btn btn-outline-success" wire:click="addNew">Ajouter</button>
 
@@ -38,19 +40,19 @@
                                             <td>{{ $d->total_amount }} F CFA</td>
                                             <td>
                                                 @foreach ($d->devisItems as $item)
-                                                    <span>{{$item->nom}}</span>
+                                                    <span>{{$item->nom}}</span><br>
                                                 @endforeach
                                             </td>
                                             <td>{{ $d->statut }}</td>
                                             <td>
                                                 <button
                                                     class="btn btn-outline-primary rounded btn-sm"
-                                                >
+                                                 wire:click.prevent="info({{$d->id}})">
                                                     <i
                                                         class="fa fa-eye"></i>
                                                 </button>
                                                 <button
-                                                    class="btn btn-outline-danger rounded btn-sm" >
+                                                    class="btn btn-outline-danger rounded btn-sm" wire:click.prevent="delete({{$d->id}})">
                                                     <i
                                                         class="fa fa-trash"
                                                         aria-hidden="true"
@@ -82,6 +84,10 @@
 
         window.addEventListener('rowEmpty', event =>{
             toastr.error('Veuillez remplir d\'abord la ligne courante', 'Devis', {positionClass: 'toast-bottom-right'});
+        })
+
+        window.addEventListener('rowNoAssign', event =>{
+            toastr.error('Veuillez ajouter ou supprimer la ligne vide', 'Devis', {positionClass: 'toast-bottom-right'});
         })
     </script>
 @endsection

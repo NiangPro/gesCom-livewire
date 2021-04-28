@@ -2,19 +2,41 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Astuce;
+use App\Models\History;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class Home extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
+    public $histo;
+    public $ventes;
+    public $depenses;
+
+    public $data = [
+        'icon' => 'icon-home',
+        'title' => 'Accueil',
+        'subtitle' => '',
+    ];
+
+    public $total;
+    public $activities;
+
+
     public function render()
     {
-        $data = [];
-        $data['icon'] = 'icon-home';
-        $data['title'] = 'Accueil';
-        $data['subtitle'] = '';
+        $this->histo = new Astuce();
+        $this->ventes = $this->histo->saleByMonth();
+        $this->depenses = $this->histo->expenseByMonth();
+        $this->activities[] = History::with('user')->where('user_id', Auth::user()->id)->orderBy('date', 'DESC')->paginate(6);
+
+        $this->total = $this->histo->allCounts();
 
         return view('livewire.home', [
-            'data' => $data,
             'page' => 'home',
         ])
         ->layout('layouts.app');

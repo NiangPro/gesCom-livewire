@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Astuce;
 use App\Models\Devis as ModelsDevis;
+use App\Models\DevisItem;
 use App\Models\Product;
 use Livewire\Component;
 
@@ -24,6 +25,7 @@ class Devis extends Component
     public $idProd;
     public $subtotal = 0.00;
     public $allProducts = [];
+    public $dev;
 
     public $form = [
         'total_amount' => 0,
@@ -65,6 +67,15 @@ class Devis extends Component
         $this->initValues();
     }
 
+    public function info($id)
+    {
+        $this->data['subtitle'] = 'Information Devis';
+        $this->etat = 'info';
+
+        $this->dev = ModelsDevis::with(['client', 'employed', 'devisItems'])->where('id', $id)->first();
+
+    }
+
     public function fieldsNotEmpty()
     {
             $response = true;
@@ -74,6 +85,8 @@ class Devis extends Component
                     if($item['nom'] == '' || $item['description'] == '' || $item['qte'] == 0 || $item['tarif'] == 0)
                         $response = false;
                 };
+            }else{
+                $response = false;
             }
 
             return $response;
@@ -147,6 +160,47 @@ class Devis extends Component
     public function save()
     {
         $this->validate();
+
+        if($this->fieldsNotEmpty()){
+            $devis = new ModelsDevis();
+            $devis->date = $this->form['date'];
+            $devis->client_id = $this->form['client_id'];
+            $devis->employed_id = $this->form['employed_id'];
+            $devis->description = $this->form['description'];
+            $devis->discount = $this->form['discount'];
+            $devis->total_amount = $this->form['total_amount'];
+            $devis->statut = $this->form['statut'];
+
+            $devis->save();
+
+            foreach ($this->allProducts as $prod) {
+                DevisItem::create([
+                    'nom' => $prod['nom'],
+                    'qte' => $prod['qte'],
+                    'description' => $prod['description'],
+                    'taxe' => $prod['taxe'],
+                    'amount' => $prod['amount'],
+                    'devis_id' => $devis->id
+                ]);
+            }
+            $this->dispatchBrowserEvent('devisAdded');
+            $this->histo->addHistorique("Ajout d'un devis", "Ajout");
+
+            $this->retour();
+
+        }else{
+            $this->dispatchBrowserEvent('rowNoAssign');
+        }
+    }
+
+    public function delete($id)
+    {
+        $devis = ModelsDevis::where('id', $id)->first();
+
+        $devis->delete();
+
+        $this->dispatchBrowserEvent('devisDeleted');
+        $this->histo->addHistorique("Suppression d'un devis", "Suppression");
     }
 
     public function render()
@@ -179,6 +233,7 @@ class Devis extends Component
 
         $this->allProducts = [];
         $this->idProd = null;
+        $this->dev = null;
         $this->subtotal = 0.00;
     }
 }

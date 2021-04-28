@@ -27,9 +27,13 @@ class Login extends Component
     {
         $this->validate();
 
-        Auth::attempt($this->form);
+        if(Auth::attempt($this->form)){
 
-        return redirect(route('home'));
+            return redirect(route('home'));
+        }
+
+        $this->dispatchBrowserEvent('errorLogin');
+
     }
 
     public function render()

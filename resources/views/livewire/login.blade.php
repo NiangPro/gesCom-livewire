@@ -46,3 +46,10 @@
         </div>
     </div>
 </div>
+@section('js')
+    <script>
+        window.addEventListener('errorLogin', event =>{
+            toastr.error('Email ou mot de passe incorrect', 'Connexion', {positionClass: 'toast-bottom-right'});
+        })
+    </script>
+@endsection
