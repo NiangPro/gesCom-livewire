@@ -7,6 +7,7 @@ use App\Models\Astuce;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class Users extends Component
@@ -217,5 +218,12 @@ class Users extends Component
         $this->form['password'] = '';
         $this->form['password_confirmation'] = '';
         $this->photo = null;
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Astuce;
 use App\Models\Client;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Clients extends Component
 {
@@ -116,6 +117,13 @@ class Clients extends Component
         $this->dispatchBrowserEvent('clientDeleted');
 
         $this->histo->addHistorique("Suppression d'un client", "Suppression");
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

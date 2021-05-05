@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Astuce;
 use App\Models\Expense;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Depenses extends Component
 {
@@ -106,6 +107,13 @@ class Depenses extends Component
         $depense = Expense::where('id', $id)->first();
 
         $depense->delete();
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

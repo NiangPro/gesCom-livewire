@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use DateTime;
 use App\Models\Astuce;
 use App\Models\Reunion;
-use Livewire\Component;
 
-use DateTime;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Reunions extends Component
 {
@@ -97,6 +98,13 @@ class Reunions extends Component
 
         $this->retour();
 
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

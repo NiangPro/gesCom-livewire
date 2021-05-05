@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Astuce;
 use App\Models\Product;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Products extends Component
 {
@@ -107,6 +108,13 @@ class Products extends Component
         $this->dispatchBrowserEvent('productDeleted');
 
         $this->histo->addHistorique("Suppression d'un produit/service", "Suppression");
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

@@ -9,14 +9,14 @@
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                @include('infos.rapportBetween')
+                <livewire:rapport-between />
             </div>
             <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title-wrap bar-success">
                                 <h5 class="">Rapports Annuels des Ventes et Dépenses</h5>
-                            </div>                    
+                            </div>
                         </div>
                         <div class="card-body">
                             <canvas id="myChart" height="200"></canvas>
@@ -25,14 +25,14 @@
                 </div>
         </div>
         <div class="col-md-5">
-            <div class="row">                
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title-wrap bar-success">
                                 <h5 class="">Graphique du mois (<?= date('M') ?>)</h5>
                             </div>
-                            
+
                         </div>
                         <div class="card-body">
                             <canvas id="myBar" height="200"></canvas>
@@ -40,13 +40,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-title-wrap bar-success">
                         <h5 class="">Comptabilité du mois (<?= date('M') ?>)</h5>
                     </div>
-                    
+
                 </div>
                 <div class="card-body">
                     <div class="row p-2">
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 </div>
@@ -167,7 +167,7 @@
             }
         }
     });
-      
+
     window.addEventListener('errorDate', event =>{
             toastr.error('La date du debut doit être inférieur à la date de Fin', 'Date', {positionClass: 'toast-top-right'});
         });

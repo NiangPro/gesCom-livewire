@@ -100,6 +100,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-md-4">
@@ -146,6 +147,13 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body p-5">
+                        <div id='calendar-container' wire:ignore>
+                            <div id='calendar'></div>
+                        </div>
         </div>
     </div>
 
@@ -214,6 +222,20 @@
         });
         window.addEventListener('todoDeleted', event =>{
             toastr.error('Vous avez supprimé le taf!', 'Travail à faire', {positionClass: 'toast-top-right'});
+        });
+
+        document.addEventListener('livewire:load', function () {
+            const Calendar = FullCalendar.Calendar;
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev next today',
+                    center: 'title',
+                    right: 'dayGridMonth timeGridWeek'
+                },
+                locale: 'fr',
+            });
+            calendar.render();
         });
 </script>
 @endsection

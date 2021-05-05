@@ -3,10 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\Astuce;
-use App\Models\Devis as ModelsDevis;
-use App\Models\DevisItem;
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\DevisItem;
+use App\Models\Devis as ModelsDevis;
+use Illuminate\Support\Facades\Auth;
 
 class Devis extends Component
 {
@@ -201,6 +202,13 @@ class Devis extends Component
 
         $this->dispatchBrowserEvent('devisDeleted');
         $this->histo->addHistorique("Suppression d'un devis", "Suppression");
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

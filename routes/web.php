@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Chats;
 use App\Http\Livewire\Devis;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Tasks;
@@ -8,17 +9,17 @@ use App\Http\Livewire\Users;
 use App\Http\Livewire\Profil;
 use App\Http\Livewire\Ventes;
 use App\Http\Livewire\Clients;
+use App\Http\Livewire\General;
 use App\Http\Livewire\Depenses;
 use App\Http\Livewire\Employes;
 use App\Http\Livewire\Products;
 use App\Http\Livewire\Rapports;
 use App\Http\Livewire\Reunions;
+use App\Http\Livewire\Passwords;
 use App\Http\Livewire\Prospects;
 use App\Http\Livewire\Historiques;
 use App\Http\Livewire\StaticDatas;
 use App\Http\Livewire\Fournisseurs;
-use App\Http\Livewire\General;
-use App\Http\Livewire\Passwords;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,4 +52,5 @@ Route::any('/parametres', General::class)->name('setting');
 Route::any('/users', Users::class)->name('users');
 Route::any('/profil', Profil::class)->name('profil');
 Route::any('/password', Passwords::class)->name('mdp');
+Route::any('/message', Chats::class)->name('chat');
 

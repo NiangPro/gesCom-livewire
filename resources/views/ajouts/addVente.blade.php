@@ -114,6 +114,7 @@
                         <th>Action</th>
                     </thead>
                     <tbody>
+                        <form method="post">
                         @foreach ($allProducts as $key=>$prod)
                             <tr>
                                 <td><input type="text" class="form-control" value="{{$prod['nom']}}"></td>
@@ -126,6 +127,7 @@
                             </tr>
 
                         @endforeach
+                        </form>
                     </tbody>
                 </table>
 

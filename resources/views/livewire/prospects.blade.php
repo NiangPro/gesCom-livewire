@@ -33,7 +33,8 @@
                                     <td>{{$p->adresse}}</td>
                                     <td>{{$p->email}}</td>
                                     <td>{{$p->tel}}</td>
-                                    <td> <button class="btn btn-outline-primary btn-sm rounded mr-2" wire:click.prevent="edit({{$p->id}})"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="btn btn-outline-danger btn-sm rounded" wire:click.prevent="delete({{$p->id}})"><i class="fa fa-trash" aria-hidden="true"></i></button> </td>
+                                    <td> <button class="btn btn-outline-primary btn-sm rounded mr-2" title="Modifier" wire:click.prevent="edit({{$p->id}})"><i class="fa fa-edit" aria-hidden="true"></i></button><button class="btn btn-outline-danger btn-sm rounded" title="Supprimer" wire:click.prevent="delete({{$p->id}})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <button class="btn btn-outline-success btn-sm rounded" title="Transferer vers client" wire:click.prevent="share({{$p->id}})"><i class="icon-link" aria-hidden="true"></i></button> </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -51,6 +52,10 @@
 
         window.addEventListener('prospectAdded', event =>{
             toastr.success('Ajout avec succès!', 'Prospect', {positionClass: 'toast-top-right'});
+        })
+
+        window.addEventListener('prospectShared', event =>{
+            toastr.success('Transfert avec succès!', 'Prospect', {positionClass: 'toast-top-right'});
         })
 
         window.addEventListener('prospectDeleted', event =>{

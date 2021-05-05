@@ -114,6 +114,10 @@ class Profil extends Component
 
     public function mount()
     {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
+
         $this->form['id'] = Auth::user()->id;
         $this->form['name'] = Auth::user()->name;
         $this->form['email'] = Auth::user()->email;

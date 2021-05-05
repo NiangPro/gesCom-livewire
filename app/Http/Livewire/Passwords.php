@@ -50,6 +50,14 @@ class Passwords extends Component
 
         $this->dispatchBrowserEvent('passwordUpdated');
     }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
+    }
+
     public function render()
     {
         $this->histo = new Astuce();

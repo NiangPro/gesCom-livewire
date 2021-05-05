@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Astuce;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class General extends Component
 {
@@ -24,7 +25,9 @@ class General extends Component
 
     public function mount()
     {
-        $this->histo = new Astuce();
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
 
         $this->appVars = $this->histo->getAppVars();
     }
@@ -64,9 +67,10 @@ class General extends Component
         $this->dispatchBrowserEvent('updateSetting');
     }
 
-
     public function render()
     {
+        $this->histo = new Astuce();
+
         return view('livewire.general', [
             'page' => 'setting',
         ])->layout('layouts.app');

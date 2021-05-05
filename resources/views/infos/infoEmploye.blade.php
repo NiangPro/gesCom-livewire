@@ -2,48 +2,49 @@
 <!--Basic User Details Ends-->
 <section id="user-area">
     <div class="row">
-        <div class="col-xl-4 col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <div class="card-title-wrap bar-primary">
-                        <div class="card-title">Information personnel</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="align-self-center halfway-fab text-center">
-                            <a class="profile-image">
-                                <img src="storage/images/{{$form['profil']}}" class="rounded-circle img-border gradient-summer width-100" alt="Card image">
-                            </a>
-                        </div>
-                        <div class="text-center">
-                            <span class="font-medium-2 text-uppercase">{{$form['prenom']}} {{$form['nom']}}</span>
-                            <p class="grey font-small-2">{{$form['fonction']}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-8 col-lg-8">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title-wrap bar-success">
-                        <div class="card-title">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {{$form['prenom']}} {{$form['nom']}}
+        <div class="col-xl-5 col-lg-5">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-primary">
+                                <div class="card-title">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{$form['prenom']}} {{$form['nom']}}
+                                        </div>
+                                        <div class="col-md-6 text-md-right">
+                                            <button class="btn btn-outline-primary" wire:click="retour"><i class="icon-action-undo" aria-hidden="true"></i> Retour</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 text-md-right">
-                                    <button class="btn btn-outline-primary" wire:click="retour"><i class="icon-action-undo" aria-hidden="true"></i> Retour</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="align-self-center halfway-fab text-center">
+                                    <a class="profile-image">
+                                        <img src="storage/images/{{$form['profil']}}" class="rounded-circle img-border gradient-summer width-100" alt="Card image">
+                                    </a>
+                                </div>
+                                <div class="text-center">
+                                    <span class="font-medium-2 text-uppercase">{{$form['prenom']}} {{$form['nom']}}</span>
+                                    <p class="grey font-small-2">{{$form['fonction']}}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-block">
-                        <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-primary">
+                                <div class="card-title">Information personnel</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="row">
                             <div class="col-md-6">
                                 <ul class="no-list-style pl-0 ">
                                     <li class="mb-2">
@@ -69,9 +70,16 @@
                                 </ul>
                             </div>
                         </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="col-xl-7 col-lg-7">
+            @livewire('documents', ['id' => $form['id']])
         </div>
     </div>
 </section>

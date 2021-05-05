@@ -36,8 +36,15 @@ class Login extends Component
 
     }
 
+    public function mount()
+    {
+        if (Auth::check()) {
+            return redirect(route('home'));
+        }
+    }
     public function render()
     {
+
         return view('livewire.login')->layout('layouts.app');
     }
 }

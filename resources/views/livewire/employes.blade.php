@@ -71,6 +71,10 @@
             toastr.success('Ajout avec succès!', 'Employé', {positionClass: 'toast-top-right'});
         })
 
+         window.addEventListener('contratAdded', event =>{
+            toastr.success('Ajout avec succès!', 'Contrat', {positionClass: 'toast-top-right'});
+        })
+
         window.addEventListener('employedDeleted', event =>{
             toastr.warning('Employé supprimé!', 'Employé', {positionClass: 'toast-top-right'});
         })

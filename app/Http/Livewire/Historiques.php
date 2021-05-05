@@ -4,9 +4,16 @@ namespace App\Http\Livewire;
 
 use App\Models\History;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Historiques extends Component
 {
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
+    }
     public function render()
     {
         $data = [];

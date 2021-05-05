@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="assets/vendors/css/toastr.css">
     <link rel="stylesheet" type="text/css" href="assets/vendors/css/switchery.min.css">
     <link rel="stylesheet" type="text/css" href="assets/vendors/css/tables/datatable/datatables.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/vendors/css/fullcalendar.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.css' rel='stylesheet' />
 
 
 
@@ -85,20 +85,10 @@
     <script src="{{ asset('assets/vendors/js/jquery.matchHeight-min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/screenfull.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/pace/pace.min.js') }}"></script>
-    <!-- BEGIN PAGE VENDOR JS-->
     <script src="{{ asset('assets/vendors/js/moment.min.js') }}"></script>
-    <!-- END PAGE VENDOR JS-->
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@10') }}"></script>
-
     <script src="{{ asset('assets/vendors/js/toastr.min.js') }}"></script>
-    <!-- BEGIN CONVEX JS-->
-    <script src="{{ asset('assets/js/app-sidebar.js') }}"></script>
-    <script src="{{ asset('assets/js/notification-sidebar.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/switchery.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/switch.min.js') }}"></script>
-
     <script src="{{ asset('assets/vendors/js/datatable/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/datatable/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/datatable/buttons.flash.min.js') }}"></script>
@@ -107,13 +97,18 @@
     <script src="{{ asset('assets/vendors/js/datatable/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/datatable/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/datatable/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('assets/js/data-tables/datatable-advanced.js') }}"></script>
     <script src="assets/vendors/js/jqBootstrapValidation.js"></script>
-    <script src="assets/js/form-validation.js"></script>
-    <script src="assets/vendors/js/fullcalendar.min.js"></script>
-    <script src="assets/js/fullcalendar.js"></script>
-    <script src="{{ asset('https://cdn.jsdelivr.net/npm/chart.js@3.1.1/dist/chart.min.js') }}"></script>
 
+    <script src="{{ asset('assets/js/notification-sidebar.js') }}"></script>
+    <script src="{{ asset('assets/js/app-sidebar.js') }}"></script>
+    <script src="{{ asset('assets/js/switch.min.js') }}"></script>
+    <script src="{{ asset('assets/js/data-tables/datatable-advanced.js') }}"></script>
+    <script src="assets/js/form-validation.js"></script>
+    <script src="assets/js/chat.js"></script>
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js'></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/chart.js@3.1.1/dist/chart.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/sweetalert2@10') }}"></script>
 
 
 

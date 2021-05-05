@@ -3,8 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\Models\Astuce;
-use App\Models\Fournisseur;
 use Livewire\Component;
+use App\Models\Fournisseur;
+use Illuminate\Support\Facades\Auth;
 
 class Fournisseurs extends Component
 {
@@ -116,6 +117,13 @@ class Fournisseurs extends Component
         $this->dispatchBrowserEvent('frDeleted');
 
         $this->histo->addHistorique("Suppression d'un fournisseur", "Suppression");
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

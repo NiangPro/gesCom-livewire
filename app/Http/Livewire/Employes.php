@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Employed;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Auth;
 
 class Employes extends Component
 {
@@ -209,6 +210,13 @@ class Employes extends Component
         $this->form['profil'] = $em->profil;
         $this->form['tel'] = $em->tel;
         $this->form['id'] = $em->id;
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

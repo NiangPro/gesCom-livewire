@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Astuce;
 use Livewire\Component;
 use App\Models\StaticData;
+use Illuminate\Support\Facades\Auth;
 
 class StaticDatas extends Component
 {
@@ -115,8 +116,7 @@ class StaticDatas extends Component
         return view('livewire.static-datas', [
             'page' => 'staticData',
             'staticDatas' => $staticDatas,
-        ])
-        ->layout('layouts.app');
+        ])->layout('layouts.app');
     }
 
     private function initForm()
@@ -124,5 +124,12 @@ class StaticDatas extends Component
         $this->form['type'] = '';
         $this->form['valeur'] = '';
         $this->form['id'] = null;
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 }

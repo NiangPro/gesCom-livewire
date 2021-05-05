@@ -6,7 +6,7 @@
         <div class="card mt-3 bg-light-gray">
             <div class="card-header text-center">
                 <div class="row">
-                    <div class="text-center col-12 pb-3"><img class="logo-img" src="storage/images/logo.png" alt="logo" width="80" height="80"></div>
+                    <div class="text-center col-12 pb-3"><img class="logo-img" src="storage/images/logo.png" alt="logo" width="120" height="120"></div>
                 </div>
             <div class="card-body p-2">
                 <form wire:submit.prevent="connecter">

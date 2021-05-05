@@ -26,6 +26,13 @@ class Home extends Component
     public $total;
     public $activities;
 
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
+    }
+
 
     public function render()
     {

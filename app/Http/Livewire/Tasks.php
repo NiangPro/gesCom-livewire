@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Astuce;
 use App\Models\Task;
+use App\Models\Astuce;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Tasks extends Component
 {
@@ -142,5 +143,12 @@ class Tasks extends Component
         $this->form['execution'] = '';
         $this->form['description'] = '';
         $this->form['id'] = null;
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 }

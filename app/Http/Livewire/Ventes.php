@@ -7,6 +7,8 @@ use App\Models\Astuce;
 use App\Models\Product;
 use Livewire\Component;
 use App\Models\ProduitVendu;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Ventes extends Component
 {
@@ -95,6 +97,11 @@ class Ventes extends Component
         }
 
         $this->form['total_amount'] = $this->subtotal - ($this->subtotal * ($this->form['discount']/100));
+    }
+
+    public function changePrice($key)
+    {
+        dd($this->allProducts[$key]);
     }
 
     public function getMontant($index)
@@ -229,5 +236,12 @@ class Ventes extends Component
         $this->idProd = null;
         $this->vente = null;
         $this->subtotal = 0.00;
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 }

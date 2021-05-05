@@ -53,6 +53,7 @@
                         <li class=" nav-item @if($page === 'depense')active @endif"><a href="{{route('depense')}}"><i class="fa fa-file"></i><span class="menu-title">Dépenses</span></a>
                         </li>
                         <li class=" nav-item @if($page === 'rapport')active @endif"><a href="{{route('rapport')}}"><i class="fas fa-chart-bar"></i><span class="menu-title">Rapports</span></a>
+                        <li class=" nav-item @if($page === 'chat')active @endif"><a href="{{route('chat')}}"><i class="icon-envelope-letter"></i><span class="menu-title">Envoi Mail</span></a>
                         </li>
                     @endif
 

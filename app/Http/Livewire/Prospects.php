@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use App\Models\Astuce;
-use App\Models\Prospect;
+use App\Models\Client;
 use Livewire\Component;
+use App\Models\Prospect;
+use Illuminate\Support\Facades\Auth;
 
 class Prospects extends Component
 {
@@ -62,6 +64,25 @@ class Prospects extends Component
         $this->data['subtitle'] = 'Liste des prospects';
         $this->etat = 'list';
         $this->initForm();
+    }
+
+    public function share($id)
+    {
+        $p = Prospect::where('id', $id)->first();
+
+        Client::create([
+            'nom' => $p->sujet,
+            'adresse' => $p->adresse,
+            'tel' => $p->tel,
+            'pays' => $p->pays,
+            'email' => $p->email
+        ]);
+
+        $p->delete();
+
+        $this->dispatchBrowserEvent('prospectShared');
+
+        $this->histo->addHistorique("Transfert d'un prospect", "Ajout");
     }
 
     public function edit($id)
@@ -130,6 +151,13 @@ class Prospects extends Component
         $this->dispatchBrowserEvent('prospectDeleted');
 
         $this->histo->addHistorique("Suppression d'un prospect", "Suppression");
+    }
+
+    public function mount()
+    {
+        if (!Auth::check()) {
+            return redirect(route('login'));
+        }
     }
 
     public function render()

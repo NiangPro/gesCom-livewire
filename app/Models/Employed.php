@@ -32,4 +32,9 @@ class Employed extends Model
     {
         return $this->hasOne(Devis::class);
     }
+
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
 }
